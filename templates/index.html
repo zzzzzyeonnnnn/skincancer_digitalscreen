@@ -1,46 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-
-  <!-- Make it compatible to mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skin Cancer Lesion Classifier</title> <!--브라우저의 제목-->
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston House Prices</title>
+    <style>
+        body {
+            background-color: #FFFFCC;
+        }
+    </style>
 </head>
 
+<body>
+ <div class='login'>
+     <h1>Boston House Prices</h1>
 
-<body style="background: #000;">
+     <!-- Action is where the data is sent. In our case, predict page.
+     If action is omitted, it assumed to be the current page -->
+    <form action="{{ url_for('predict') }}" method="post">
+    	<input type="text" name="crime_rate" placeholder="Crime ratio" required="required" /><br>
+        <input type="text" name="number_of_rooms" placeholder="Number of rooms" required="required" /><br>
+        <input type="text" name="aging_houses_rate" placeholder="Rate of aging houses" required="required"><p>
 
-<h2 style="color:Violet;">Skin Cancer Lesion Classifier</h2><p>
-<h4 style="color:Violet;">Upload an image and click submit</h4>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict price of Boston</button></p>
+    </form>
 
+   <br>
+   <br>
+   <h4>{{ prediction_text }}</h4>
 
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-	<p style="color:Violet;">
-		<input type="file" name="file" autocomplete="off" required>
-	</p>
-    </dl>
-    <p style="color:Violet;">
-	<input type="submit" name="submit" value="Submit">
-    </p>
-</form>
-
-
-
-<p style="color:MediumSeaGreen;">
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-        Diagnosis for the following image is: <h3 style="color:MediumSeaGreen;"><u>{{ messages[0] }}</u></h3><br>
-        <img src="{{ messages[1] }}" width="300", height="225">
-
-	  {% endif %}
-	{% endwith %}
-</p>
-
-
+ </div>
 
 </body>
 </html>
